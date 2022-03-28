@@ -16,7 +16,9 @@ pipeline {
         stage('Test') {
             agent {
                 kubernetes {
-                    image 'qnib/pytest'
+                    containerTemplate {
+                        image 'qnib/pytest'
+                    }
                 }
             }
             steps {
@@ -31,7 +33,9 @@ pipeline {
         stage('Deliver') {
             agent {
                 kubernetes {
-                    image 'cdrx/pyinstaller-linux:python2'
+                    containerTemplate {
+                        image 'cdrx/pyinstaller-linux:python2'
+                    }
                 }
             }
             steps {
